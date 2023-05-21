@@ -1,11 +1,16 @@
 from django.contrib.auth.models import AbstractUser
+from django.db import models
+
 
 class CustomUser(AbstractUser):
     """
-    A CustomUser class is added so we can add functionality later. It's more convenient then not to add CustomUser at beginning of project before database migrations are started.
+    A CustomUser class is added so we can add functionality to `AbstractUser`.
     """
-    # Add additional fields in here and remove `pass` line below.
-    pass
+
+    registration_accepted = models.BooleanField(
+        default=False,
+        help_text="Designates whether user's registration has been accepted by an admin.",
+    )
 
     def __str__(self):
         """

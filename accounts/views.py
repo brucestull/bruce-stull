@@ -33,7 +33,7 @@ class CustomLoginView(LoginView):
 
     def get_context_data(self, **kwargs):
         """
-        Get the parent `context` and add `the_site_name` to the it.
+        Get the parent `context` and add `the_site_name` to it.
         """
         context = super().get_context_data(**kwargs)
         context['the_site_name'] = THE_SITE_NAME

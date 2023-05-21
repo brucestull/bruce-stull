@@ -12,7 +12,7 @@ ANOTHER_TEST_USERNAME = "AnotherCustomUser"
 ANOTHER_TEST_PASSWORD = "another_test_password"
 ANOTHER_TEST_FIRST_NAME = "Another"
 
-THE_SITE_NAME = "DjangoCustomUserStarter"
+THE_SITE_NAME = "BS Blog"
 
 SIGN_UP_VIEW_URL = "/accounts/signup/"
 SIGN_UP_VIEW_NAME = "signup"
