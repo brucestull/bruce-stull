@@ -2,20 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible"
-          content="IE=edge">
+          content="IE=edge" />
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
           crossorigin="anonymous">
-    <title>{% block title %}{% endblock title %}</title>
+    <title>{% block title %} {% endblock title %}</title>
 </head>
 
 <body>
-    <header class="section">
+    <section class="section">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand"
@@ -37,11 +37,11 @@
                      id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <span class="nav-link">
-                                Greetings, {{ user.username | capfirst }}!
-                            </span>
-                        </li>
+                            <li class="nav-item">
+                                <span class="nav-link">
+                                    Greetings, {{ user.username | capfirst }}!
+                                </span>
+                            </li>
                         {% endif %}
                         <li class="nav-item">
                             <a class="nav-link active"
@@ -50,31 +50,31 @@
                         </li>
 
                         {% if user.registration_accepted %}
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="#">Inspirationals</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                href="#">Item</a>
+                            </li>
                         {% endif %}
 
                         {% if not user.is_authenticated and not hide_login_link %}
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="{% url 'login' %}">Login</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                href="{% url 'login' %}">Login</a>
+                            </li>
                         {% endif %}
 
                         {% if not user.is_authenticated and not hide_signup_link %}
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="{% url 'signup' %}">Signup</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                href="{% url 'signup' %}">Signup</a>
+                            </li>
                         {% endif %}
 
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="{% url 'logout' %}">Logout</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                href="{% url 'logout' %}">Logout</a>
+                            </li>
                         {% endif %}
 
                         <li class="nav-item dropdown">
@@ -88,61 +88,62 @@
                             <ul class="dropdown-menu">
 
                                 {% if user.is_authenticated and user.registration_accepted %}
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="#">Inspirationals</a>
-                                </li>
-                                {% if not hide_inspirational_create_link %}
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="#">Create Inspirational</a>
-                                </li>
-                                {% endif %}
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                        href="#">Item</a>
+                                    </li>
+                                    {% if not hide_inspirational_create_link %}
+                                        <li>
+                                            <a class="dropdown-item"
+                                            href="#">Item</a>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
 
-                                {% if not hide_edit_profile_link %}
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="{% url 'edit' user.id %}">Edit User</a>
-                                </li>
-                                {% endif %}
+                                    {% if not hide_edit_profile_link %}
+                                        <li>
+                                            <a class="dropdown-item"
+                                            href="#">Item</a>
+                                        </li>
+                                    {% endif %}
                                 {% endif %}
 
 
                                 {% if user.is_authenticated %}
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="{% url 'password_change' %}">Change Password</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="{% url 'password_reset' %}">Reset Password</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                        href="{% url 'password_change' %}">Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                        href="{% url 'password_reset' %}">Reset Password</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
                                 {% endif %}
                                 {% if user.is_staff and user.registration_accepted %}
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="{% url 'admin:index' %}">
-                                        Django Admin Interface
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="#">Inspirationals-API</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                        href="{% url 'admin:index' %}">
+                                            Django Admin Interface
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                        href="#">Item</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
                                 {% endif %}
                                 <li>
-                                    <a href="https://github.com/brucestull/bruce-stull"
+                                    <a class="dropdown-item"
+                                       href="https://github.com/brucestull/bruce-stull"
                                        target="_blank">
-                                        BS Blog - GitHub Repository
+                                        BS Blog - Repository
                                     </a>
                                 </li>
                             </ul>
@@ -166,22 +167,7 @@
             {% block content %}
             {% endblock content %}
         </div>
-    </header>
-    <main class="flex-shrink-0">
-        <div class="container">
-            <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-            <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and
-                CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code
-                      class="small">main &gt; .container</code>.</p>
-            <p>Back to <a href="../examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
-        </div>
-    </main>
-
-    <footer class="footer mt-auto py-3 bg-body-tertiary">
-        <div class="container">
-            <span class="text-body-secondary">Place sticky footer content here.</span>
-        </div>
-    </footer>
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
