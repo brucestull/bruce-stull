@@ -10,7 +10,7 @@ ALLOWED_HOSTS = ["localhost"]
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "static_dev",
 ]
 
 
@@ -29,7 +29,6 @@ EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
