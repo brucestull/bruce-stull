@@ -16,9 +16,9 @@ class Project(models.Model):
         help_text="Enter the technology used in the project.",
         max_length=30,
     )
-    image = models.FilePathField(
+    image = models.ImageField(
         help_text="Add an image of the project.",
-        path="static\images",
+        upload_to="images/",
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
