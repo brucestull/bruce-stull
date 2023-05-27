@@ -1,4 +1,9 @@
-# Django Starter with CustomUser, Django Documentation Generator, DEV-PROD settings, pipenv, and Heroku Procfile
+# Bruce Stull's Portfolio and Blog Application
+
+## Appications
+
+* Portfolio
+* Blog
 
 * NOTE: Author is using PowerShell for this guide.
 
