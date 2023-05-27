@@ -4,13 +4,13 @@ from accounts.models import CustomUser
 from accounts.admin import CustomUserAdmin
 
 
-A_TEST_USERNAME = 'ACustomUser'
-A_TEST_PASSWORD = 'a_test_password'
-A_TEST_FIRST_NAME = 'A'
+TEST_USERNAME_ONE = 'ACustomUser'
+TEST_PASSWORD_ONE = 'TEST_PASSWORD_ONE'
+TEST_FIRST_NAME_ONE = 'A'
 
-ANOTHER_TEST_USERNAME = 'AnotherCustomUser'
-ANOTHER_TEST_PASSWORD = 'another_test_password'
-ANOTHER_TEST_FIRST_NAME = 'Another'
+TEST_USERNAME_TWO = 'AnotherCustomUser'
+TEST_PASSWORD_TWO = 'TEST_PASSWORD_TWO'
+TEST_FIRST_NAME_TWO = 'Another'
 
 class TestCustomUserAdmin(TestCase):
     @classmethod
@@ -21,8 +21,8 @@ class TestCustomUserAdmin(TestCase):
         This specific function name `setUpTestData` is required by Django.
         """
         cls.user = CustomUser.objects.create(
-            username=A_TEST_USERNAME,
-            first_name=A_TEST_FIRST_NAME,
+            username=TEST_USERNAME_ONE,
+            first_name=TEST_FIRST_NAME_ONE,
         )
 
     def test_get_fieldsets_is_list_of_tuples(self):

@@ -6,7 +6,7 @@ from accounts.models import CustomUser
 CUSTOM_USER_REGISTRATION_ACCEPTED_LABEL = "registration accepted"
 CUSTOM_USER_REGISTRATION_ACCEPTED_HELP_TEXT = "Designates whether user's registration has been accepted by an admin."
 
-A_TEST_USERNAME = 'ACustomUser'
+TEST_USERNAME_ONE = 'ACustomUser'
 
 
 class CustomUserModelTest(TestCase):
@@ -22,7 +22,7 @@ class CustomUserModelTest(TestCase):
         This specific function name `setUpTestData` is required by Django.
         """
         user = CustomUser.objects.create(
-            username=A_TEST_USERNAME,
+            username=TEST_USERNAME_ONE,
         )
 
     def test_registration_accepted_label(self):
