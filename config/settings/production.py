@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ['flynnt-knapp-djangostarter.herokuapp.com']
 MIDDLEWARE = MIDDLEWARE + ['whitenoise.middleware.WhiteNoiseMiddleware']
 
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 
 
 database_config_variables = get_database_config_variables(

@@ -10,7 +10,7 @@ ALLOWED_HOSTS = ["localhost"]
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static_dev",
+    BASE_DIR / "static",
 ]
 
 
