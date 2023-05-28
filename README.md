@@ -27,6 +27,15 @@
 
 ### Portfolio
 
+* `Project`
+    * `title`
+    * `description`
+    * `technology`
+    * `image`
+* `Technology`
+    * `name`
+    * `description`
+
 ## Views
 
 ## Templates
@@ -39,6 +48,10 @@
     * COMMENTS
     * HTML STRUCTURE
     * CSS
+
+1. `TimestampMixin` class
+    * COMMENTS
+    * CODE
 
 ## PyPI Packages
 

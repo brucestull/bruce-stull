@@ -15,7 +15,8 @@ class TimestampMixin(models.Model):
 
     class Meta:
         # This mixin class is not a model, so it should not be treated as such.
-        # We don't want Django to create a table for this mixin class, that is why we make it `abstract = True`
+        # We don't want Django to create a table for this mixin class, that is
+        # why we make it `abstract = True`
         abstract = True
 
 
@@ -52,12 +53,16 @@ class Project(TimestampMixin, models.Model):
     description = models.TextField(
         help_text="Enter a description of the project.",
     )
-    technology = models.CharField(
-        help_text="Enter the technology used in the project.",
-        max_length=30,
+    technology = models.ManyToManyField(
+        Technology,
+        help_text="Select a technology for this project.",
+        verbose_name="technologies",
+        related_name="projects",
     )
     image = models.ImageField(
         help_text="Add an image of the project.",
+        # `upload_to` is a required argument for `ImageField`.
+        # It specifies the path to which the uploaded file will be saved.
         upload_to="images/",
     )
 
