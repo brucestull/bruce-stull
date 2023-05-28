@@ -2,11 +2,30 @@
 
 ## Table of Contents
 
+* [Production Links](#production-links)
+* [Django Applications](#django-applications)
+* [Models](#models)
+    * [Blog](#blog)
+    * [Portfolio](#portfolio)
+* [Views](#views)
+* [Templates](#templates)
+* [Interesting Features](#interesting-features)
+* [New Knowledge](#new-knowledge)
+* [PyPI Packages](#pypi-packages)
+* [Page Layout Images](#page-layout-images)
+
 ## Production Links
 
 ## Django Applications
 
+* `blog`
+* `portfolio`
+
 ## Models
+
+### Blog
+
+### Portfolio
 
 ## Views
 
@@ -15,6 +34,11 @@
 ## Interesting Features
 
 ## New Knowledge
+
+1. Sticky Footer
+    * COMMENTS
+    * HTML STRUCTURE
+    * CSS
 
 ## PyPI Packages
 
