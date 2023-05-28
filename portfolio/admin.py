@@ -30,6 +30,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "truncated_description",
+        "display_technologies",
         "image",
         "created_at",
     )
