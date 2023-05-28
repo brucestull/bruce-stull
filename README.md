@@ -42,7 +42,23 @@
 
 ## PyPI Packages
 
+* <https://pypi.org/project/asgiref/>
+* <https://pypi.org/project/coverage/>
+* <https://pypi.org/project/django/>
+* <https://pypi.org/project/docutils/>
+* <https://pypi.org/project/gunicorn/>
+* <https://pypi.org/project/pillow/>
+* <https://pypi.org/project/pip/>
+* <https://pypi.org/project/psycopg2/>
+* <https://pypi.org/project/python-dotenv/>
+* <https://pypi.org/project/setuptools/>
+* <https://pypi.org/project/sqlparse/>
+* <https://pypi.org/project/tzdata/>
+* <https://pypi.org/project/wheel/>
+* <https://pypi.org/project/whitenoise/>
+
 ## Page Layout Images
 
 ![PageLayout](https://github.com/brucestull/bruce-stull/assets/47562501/07366f46-bd1f-4776-9f97-2400c38719b3)
 
+[Back to Top](#bruce-stulls-portfolio-and-blog-application)

@@ -1,6 +1,17 @@
 from django.test import TestCase
 
-from portfolio.models import Project
+from portfolio.models import TimestampMixin, Technology, Project
+
+TECHNOLOGY_NAME_LABEL = "name"
+TECHNOLOGY_NAME_HELP_TEXT = "Enter the name of the technology."
+TECHNOLOGY_NAME_MAX_LENGTH = 30
+TECHNOLOGY_NAME = "Django"
+
+TECHNOLOGY_DESCRIPTION_LABEL = "description"
+TECHNOLOGY_DESCRIPTION_HELP_TEXT = "Enter a description of the technology."
+TECHNOLOGY_DESCRIPTION = "Django Web Framework"
+
+TECHNOLOGY_VERBOSE_NAME_PLURAL = "technologies"
 
 PROJECT_TITLE_LABEL = "title"
 PROJECT_TITLE_MAX_LENGTH = 100
@@ -19,6 +30,130 @@ PROJECT_IMAGE_LABEL = "image"
 PROJECT_IMAGE_HELP_TEXT = "Add an image of the project."
 PROJECT_IMAGE_PATH = "/img"
 PROJECT_IMAGE = "test_image.jpg"
+
+
+class TimestampMixinTest(TestCase):
+    """
+    Tests for `TimestampMixin` model.
+    """
+
+    def test_created_at_label(self):
+        """
+        `TimestampMixin` model `created_at` field label should be `created at`.
+        """
+        field_label = TimestampMixin._meta.get_field("created_at").verbose_name
+        self.assertEqual(field_label, "created at")
+
+    def test_created_at_auto_now_add_true(self):
+        """
+        `TimestampMixin` model `created_at` field `auto_now_add` should be `True`.
+        """
+        auto_now_add = TimestampMixin._meta.get_field("created_at").auto_now_add
+        self.assertTrue(auto_now_add)
+
+    def test_updated_at_label(self):
+        """
+        `TimestampMixin` model `updated_at` field label should be `updated at`.
+        """
+        field_label = TimestampMixin._meta.get_field("updated_at").verbose_name
+        self.assertEqual(field_label, "updated at")
+
+    def test_updated_at_auto_now_true(self):
+        """
+        `TimestampMixin` model `updated_at` field `auto_now` should be `True`.
+        """
+        auto_now = TimestampMixin._meta.get_field("updated_at").auto_now
+        self.assertTrue(auto_now)
+
+    def test_class_meta_abstract_true(self):
+        """
+        `TimestampMixin` model `Meta` class `abstract` should be `True`.
+        """
+        abstract = TimestampMixin._meta.abstract
+        self.assertTrue(abstract)
+
+
+class TechnologyTest(TestCase):
+    """
+    Tests for `Technology` model.
+    """
+
+    @classmethod
+    def setUpTestData(cls):
+        """
+        Set up non-modified objects used by all test methods.
+
+        This specific function name `setUpTestData` is required by Django.
+        """
+        cls.technology = Technology.objects.create(
+            name=TECHNOLOGY_NAME,
+            description=TECHNOLOGY_DESCRIPTION,
+        )
+
+    def test_name_label(self):
+        """
+        `Technology` model `name` field label should be `name`.
+        """
+        field_label = self.technology._meta.get_field(
+            TECHNOLOGY_NAME_LABEL
+        ).verbose_name
+        self.assertEqual(field_label, TECHNOLOGY_NAME_LABEL)
+
+    def test_name_help_text(self):
+        """
+        `Technology` model `name` field help text should be `Enter the name of the technology.`.
+        """
+        field_help_text = self.technology._meta.get_field(
+            TECHNOLOGY_NAME_LABEL
+        ).help_text
+        self.assertEqual(field_help_text, TECHNOLOGY_NAME_HELP_TEXT)
+
+    def test_name_max_length(self):
+        """
+        `Technology` model `name` field max length should be 30.
+        """
+        max_length = self.technology._meta.get_field(TECHNOLOGY_NAME_LABEL).max_length
+        self.assertEqual(max_length, TECHNOLOGY_NAME_MAX_LENGTH)
+
+    def test_description_label(self):
+        """
+        `Technology` model `description` field label should be `description`.
+        """
+        field_label = self.technology._meta.get_field(
+            TECHNOLOGY_DESCRIPTION_LABEL
+        ).verbose_name
+        self.assertEqual(field_label, TECHNOLOGY_DESCRIPTION_LABEL)
+
+    def test_description_help_text(self):
+        """
+        `Technology` model `description` field help text should be
+        `Enter a description of the technology.`.
+        """
+        field_help_text = self.technology._meta.get_field(
+            TECHNOLOGY_DESCRIPTION_LABEL
+        ).help_text
+        self.assertEqual(field_help_text, TECHNOLOGY_DESCRIPTION_HELP_TEXT)
+
+    def test_dunder_string_method(self):
+        """
+        `Technology` model `__str__` method should return `name`.
+        """
+        self.assertEqual(str(self.technology), TECHNOLOGY_NAME)
+
+    def test_meta_verbose_name_plural(self):
+        """
+        `Technology` model `Meta` class `verbose_name_plural` should be `technologies`.
+        """
+        field_verbose_name_plural = self.technology._meta.verbose_name_plural
+        self.assertEqual(
+            field_verbose_name_plural,
+            TECHNOLOGY_VERBOSE_NAME_PLURAL,
+        )
+        # Another way to test this is to use the `Technology` model class itself.
+        self.assertEqual(
+            str(Technology._meta.verbose_name_plural),
+            TECHNOLOGY_VERBOSE_NAME_PLURAL,
+        )
 
 
 class ProjectTest(TestCase):

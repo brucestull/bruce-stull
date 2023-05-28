@@ -4,7 +4,8 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     """
-    A CustomUser class is added so we can add functionality to `AbstractUser`.
+    A `CustomUser` class is created by inheriting from `AbstractUser`.
+    We can then add new fields to the ones provided by `AbstractUser`.
     """
 
     registration_accepted = models.BooleanField(
@@ -14,6 +15,6 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         """
-        String representation of CustomUser.
+        String representation of `CustomUser`.
         """
         return self.username
