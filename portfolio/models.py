@@ -81,7 +81,6 @@ class Project(TimestampMixin, models.Model):
 
     def display_technologies(self):
         """
-        Creates a string for the technologies. This is required to display
-        genre in Admin.
+        Creates a string for the technologies. This will allow us to display multiple `Technology`'s in the `Project` list view.
         """
         return ", ".join(technology.name for technology in self.technology.all()[:3])
