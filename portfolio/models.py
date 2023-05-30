@@ -15,7 +15,8 @@ class TimestampMixin(models.Model):
 
     class Meta:
         # This mixin class is not a model, so it should not be treated as such.
-        # We don't want Django to create a table for this mixin class, that is why we make it `abstract = True`
+        # We don't want Django to create a table for this mixin class, that is
+        # why we make it `abstract = True`
         abstract = True
 
 
@@ -30,6 +31,8 @@ class Technology(TimestampMixin, models.Model):
     )
     description = models.TextField(
         help_text="Enter a description of the technology.",
+        blank=True,
+        null=True,
     )
 
     def __str__(self):
@@ -41,6 +44,7 @@ class Technology(TimestampMixin, models.Model):
     class Meta:
         verbose_name_plural = "technologies"
 
+
 class Project(TimestampMixin, models.Model):
     """
     A Project class is created to store information about a project.
@@ -51,14 +55,22 @@ class Project(TimestampMixin, models.Model):
     )
     description = models.TextField(
         help_text="Enter a description of the project.",
+        blank=True,
+        null=True,
     )
-    technology = models.CharField(
-        help_text="Enter the technology used in the project.",
-        max_length=30,
+    technology = models.ManyToManyField(
+        Technology,
+        help_text="Select a technology for this project.",
+        verbose_name="technologies",
+        related_name="projects",
     )
     image = models.ImageField(
         help_text="Add an image of the project.",
-        upload_to="images/",
+        # `upload_to` is a required argument for `ImageField`.
+        # It specifies the path to which the uploaded file will be saved.
+        # upload_to="images/",
+        blank=True,
+        null=True,
     )
 
     def __str__(self):
@@ -66,3 +78,9 @@ class Project(TimestampMixin, models.Model):
         String representation of Project.
         """
         return self.title
+
+    def display_technologies(self):
+        """
+        Creates a string for the technologies. This will allow us to display multiple `Technology`'s in the `Project` list view.
+        """
+        return ", ".join(technology.name for technology in self.technology.all()[:3])

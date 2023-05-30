@@ -2,34 +2,44 @@ from django.test import TestCase
 
 from portfolio.models import TimestampMixin, Technology, Project
 
-TECHNOLOGY_NAME_LABEL = "name"
-TECHNOLOGY_NAME_HELP_TEXT = "Enter the name of the technology."
-TECHNOLOGY_NAME_MAX_LENGTH = 30
-TECHNOLOGY_NAME = "Django"
+TEST_TECHNOLOGY_NAME_LABEL = "name"
+TEST_TECHNOLOGY_NAME_HELP_TEXT = "Enter the name of the technology."
+TEST_TECHNOLOGY_NAME_MAX_LENGTH = 30
 
-TECHNOLOGY_DESCRIPTION_LABEL = "description"
-TECHNOLOGY_DESCRIPTION_HELP_TEXT = "Enter a description of the technology."
-TECHNOLOGY_DESCRIPTION = "Django Web Framework"
+TEST_TECHNOLOGY_DESCRIPTION_LABEL = "description"
+TEST_TECHNOLOGY_DESCRIPTION_HELP_TEXT = "Enter a description of the technology."
 
-TECHNOLOGY_VERBOSE_NAME_PLURAL = "technologies"
+TEST_TECHNOLOGY_VERBOSE_NAME_PLURAL = "technologies"
 
-PROJECT_TITLE_LABEL = "title"
-PROJECT_TITLE_MAX_LENGTH = 100
-PROJECT_TITLE = "Test Project"
+TEST_TECHNOLOGY_NAME_ONE = "Django"
+TEST_TECHNOLOGY_DESCRIPTION_ONE = "Django Web Framework"
+TEST_TECHNOLOGY_NAME_TWO = "Python"
+TEST_TECHNOLOGY_DESCRIPTION_TWO = "Python Programming Language"
+TEST_TECHNOLOGY_NAME_THREE = "PostgreSQL"
+TEST_TECHNOLOGY_DESCRIPTION_THREE = "PostgreSQL Database Management System"
+TEST_TECHNOLOGY_NAME_FOUR = "HTML"
+TEST_TECHNOLOGY_DESCRIPTION_FOUR = "HTML Markup Language"
 
-PROJECT_DESCRIPTION_LABEL = "description"
-PROJECT_DESCRIPTION_HELP_TEXT = "Enter a description of the project."
-PROJECT_DESCRIPTION = "Test description."
 
-PROJECT_TECHNOLOGY_LABEL = "technology"
-PROJECT_TECHNOLOGY_HELP_TEXT = "Enter the technology used in the project."
-PROJECT_TECHNOLOGY_MAX_LENGTH = 30
-PROJECT_TECHNOLOGY = "Django"
+TEST_PROJECT_TITLE_LABEL = "title"
+TEST_PROJECT_TITLE_MAX_LENGTH = 100
 
-PROJECT_IMAGE_LABEL = "image"
-PROJECT_IMAGE_HELP_TEXT = "Add an image of the project."
-PROJECT_IMAGE_PATH = "/img"
-PROJECT_IMAGE = "test_image.jpg"
+TEST_PROJECT_DESCRIPTION_LABEL = "description"
+TEST_PROJECT_DESCRIPTION_HELP_TEXT = "Enter a description of the project."
+
+TEST_PROJECT_TECHNOLOGY_LABEL = "technology"
+TEST_PROJECT_TECHNOLOGY_HELP_TEXT = "Select a technology for this project."
+TEST_PROJECT_TECHNOLOGY_VERBOSE_NAME = "technologies"
+TEST_PROJECT_TECHNOLOGY_RELATED_NAME = "projects"
+
+TEST_PROJECT_IMAGE_LABEL = "image"
+TEST_PROJECT_IMAGE_HELP_TEXT = "Add an image of the project."
+TEST_PROJECT_IMAGE_PATH = "/img"
+
+TEST_PROJECT_TITLE = "Test Project"
+TEST_PROJECT_DESCRIPTION = "Test description."
+TEST_PROJECT_TECHNOLOGY = "Django"
+TEST_PROJECT_IMAGE = "test_image.jpg"
 
 
 class TimestampMixinTest(TestCase):
@@ -86,8 +96,8 @@ class TechnologyTest(TestCase):
         This specific function name `setUpTestData` is required by Django.
         """
         cls.technology = Technology.objects.create(
-            name=TECHNOLOGY_NAME,
-            description=TECHNOLOGY_DESCRIPTION,
+            name=TEST_TECHNOLOGY_NAME_ONE,
+            description=TEST_TECHNOLOGY_DESCRIPTION_ONE,
         )
 
     def test_name_label(self):
@@ -95,34 +105,36 @@ class TechnologyTest(TestCase):
         `Technology` model `name` field label should be `name`.
         """
         field_label = self.technology._meta.get_field(
-            TECHNOLOGY_NAME_LABEL
+            TEST_TECHNOLOGY_NAME_LABEL
         ).verbose_name
-        self.assertEqual(field_label, TECHNOLOGY_NAME_LABEL)
+        self.assertEqual(field_label, TEST_TECHNOLOGY_NAME_LABEL)
 
     def test_name_help_text(self):
         """
         `Technology` model `name` field help text should be `Enter the name of the technology.`.
         """
         field_help_text = self.technology._meta.get_field(
-            TECHNOLOGY_NAME_LABEL
+            TEST_TECHNOLOGY_NAME_LABEL
         ).help_text
-        self.assertEqual(field_help_text, TECHNOLOGY_NAME_HELP_TEXT)
+        self.assertEqual(field_help_text, TEST_TECHNOLOGY_NAME_HELP_TEXT)
 
     def test_name_max_length(self):
         """
         `Technology` model `name` field max length should be 30.
         """
-        max_length = self.technology._meta.get_field(TECHNOLOGY_NAME_LABEL).max_length
-        self.assertEqual(max_length, TECHNOLOGY_NAME_MAX_LENGTH)
+        max_length = self.technology._meta.get_field(
+            TEST_TECHNOLOGY_NAME_LABEL
+        ).max_length
+        self.assertEqual(max_length, TEST_TECHNOLOGY_NAME_MAX_LENGTH)
 
     def test_description_label(self):
         """
         `Technology` model `description` field label should be `description`.
         """
         field_label = self.technology._meta.get_field(
-            TECHNOLOGY_DESCRIPTION_LABEL
+            TEST_TECHNOLOGY_DESCRIPTION_LABEL
         ).verbose_name
-        self.assertEqual(field_label, TECHNOLOGY_DESCRIPTION_LABEL)
+        self.assertEqual(field_label, TEST_TECHNOLOGY_DESCRIPTION_LABEL)
 
     def test_description_help_text(self):
         """
@@ -130,15 +142,15 @@ class TechnologyTest(TestCase):
         `Enter a description of the technology.`.
         """
         field_help_text = self.technology._meta.get_field(
-            TECHNOLOGY_DESCRIPTION_LABEL
+            TEST_TECHNOLOGY_DESCRIPTION_LABEL
         ).help_text
-        self.assertEqual(field_help_text, TECHNOLOGY_DESCRIPTION_HELP_TEXT)
+        self.assertEqual(field_help_text, TEST_TECHNOLOGY_DESCRIPTION_HELP_TEXT)
 
     def test_dunder_string_method(self):
         """
         `Technology` model `__str__` method should return `name`.
         """
-        self.assertEqual(str(self.technology), TECHNOLOGY_NAME)
+        self.assertEqual(str(self.technology), TEST_TECHNOLOGY_NAME_ONE)
 
     def test_meta_verbose_name_plural(self):
         """
@@ -147,12 +159,12 @@ class TechnologyTest(TestCase):
         field_verbose_name_plural = self.technology._meta.verbose_name_plural
         self.assertEqual(
             field_verbose_name_plural,
-            TECHNOLOGY_VERBOSE_NAME_PLURAL,
+            TEST_TECHNOLOGY_VERBOSE_NAME_PLURAL,
         )
         # Another way to test this is to use the `Technology` model class itself.
         self.assertEqual(
             str(Technology._meta.verbose_name_plural),
-            TECHNOLOGY_VERBOSE_NAME_PLURAL,
+            TEST_TECHNOLOGY_VERBOSE_NAME_PLURAL,
         )
 
 
@@ -168,86 +180,92 @@ class ProjectTest(TestCase):
 
         This specific function name `setUpTestData` is required by Django.
         """
-        cls.project = Project.objects.create(
-            title=PROJECT_TITLE,
-            description=PROJECT_DESCRIPTION,
-            technology=PROJECT_TECHNOLOGY,
-            image=PROJECT_IMAGE,
+        cls.technology = Technology.objects.create(
+            name=TEST_TECHNOLOGY_NAME_ONE,
+            description=TEST_TECHNOLOGY_DESCRIPTION_ONE,
         )
+
+        cls.project = Project.objects.create(
+            title=TEST_PROJECT_TITLE,
+            description=TEST_PROJECT_DESCRIPTION,
+            image=TEST_PROJECT_IMAGE,
+        )
+        cls.project.technology.set([cls.technology])
 
     def test_title_label(self):
         """
         `Project` model `title` field label should be `title`.
         """
-        field_label = self.project._meta.get_field(PROJECT_TITLE_LABEL).verbose_name
-        self.assertEqual(field_label, PROJECT_TITLE_LABEL)
+        field_label = self.project._meta.get_field(
+            TEST_PROJECT_TITLE_LABEL
+        ).verbose_name
+        self.assertEqual(field_label, TEST_PROJECT_TITLE_LABEL)
 
     def test_title_max_length(self):
         """
         `Project` model `title` field max length should be 100.
         """
-        max_length = self.project._meta.get_field(PROJECT_TITLE_LABEL).max_length
-        self.assertEqual(max_length, PROJECT_TITLE_MAX_LENGTH)
+        max_length = self.project._meta.get_field(TEST_PROJECT_TITLE_LABEL).max_length
+        self.assertEqual(max_length, TEST_PROJECT_TITLE_MAX_LENGTH)
 
     def test_description_label(self):
         """
         `Project` model `description` field label should be `description`.
         """
         field_label = self.project._meta.get_field(
-            PROJECT_DESCRIPTION_LABEL
+            TEST_PROJECT_DESCRIPTION_LABEL
         ).verbose_name
-        self.assertEqual(field_label, PROJECT_DESCRIPTION_LABEL)
+        self.assertEqual(field_label, TEST_PROJECT_DESCRIPTION_LABEL)
 
     def test_description_help_text(self):
         """
         `Project` model `description` field help text should be `Enter a description of the project.`.
         """
-        help_text = self.project._meta.get_field(PROJECT_DESCRIPTION_LABEL).help_text
-        self.assertEqual(help_text, PROJECT_DESCRIPTION_HELP_TEXT)
+        help_text = self.project._meta.get_field(
+            TEST_PROJECT_DESCRIPTION_LABEL
+        ).help_text
+        self.assertEqual(help_text, TEST_PROJECT_DESCRIPTION_HELP_TEXT)
 
     def test_technology_label(self):
         """
         `Project` model `technology` field label should be `technology`.
         """
         field_label = self.project._meta.get_field(
-            PROJECT_TECHNOLOGY_LABEL
+            TEST_PROJECT_TECHNOLOGY_LABEL,
         ).verbose_name
-        self.assertEqual(field_label, PROJECT_TECHNOLOGY_LABEL)
+        self.assertEqual(field_label, TEST_PROJECT_TECHNOLOGY_VERBOSE_NAME)
 
     def test_technology_help_text(self):
         """
         `Project` model `technology` field help text should be `Enter the technology used in the project.`.
         """
-        help_text = self.project._meta.get_field(PROJECT_TECHNOLOGY_LABEL).help_text
-        self.assertEqual(help_text, PROJECT_TECHNOLOGY_HELP_TEXT)
-
-    def test_technology_max_length(self):
-        """
-        `Project` model `technology` field max length should be 30.
-        """
-        max_length = self.project._meta.get_field(PROJECT_TECHNOLOGY_LABEL).max_length
-        self.assertEqual(max_length, PROJECT_TECHNOLOGY_MAX_LENGTH)
+        help_text = self.project._meta.get_field(
+            TEST_PROJECT_TECHNOLOGY_LABEL,
+        ).help_text
+        self.assertEqual(help_text, TEST_PROJECT_TECHNOLOGY_HELP_TEXT)
 
     def test_image_label(self):
         """
         `Project` model `image` field label should be `image`.
         """
-        field_label = self.project._meta.get_field(PROJECT_IMAGE_LABEL).verbose_name
-        self.assertEqual(field_label, PROJECT_IMAGE_LABEL)
+        field_label = self.project._meta.get_field(
+            TEST_PROJECT_IMAGE_LABEL
+        ).verbose_name
+        self.assertEqual(field_label, TEST_PROJECT_IMAGE_LABEL)
 
     def test_image_help_text(self):
         """
         `Project` model `image` field help text should be `Add an image of the project.`.
         """
-        help_text = self.project._meta.get_field(PROJECT_IMAGE_LABEL).help_text
-        self.assertEqual(help_text, PROJECT_IMAGE_HELP_TEXT)
+        help_text = self.project._meta.get_field(TEST_PROJECT_IMAGE_LABEL).help_text
+        self.assertEqual(help_text, TEST_PROJECT_IMAGE_HELP_TEXT)
 
     # TODO: Fix this test.
     # def test_image_path(self):
     #     """
     #     `Project` model `image` field path should be `/img`.
     #     """
-    #     path = self.project._meta.get_field(PROJECT_IMAGE_LABEL).path
+    #     path = self.project._meta.get_field(TEST_PROJECT_IMAGE_LABEL).path
     #     self.assertEqual(path, PROJECT_IMAGE_PATH)
 
     def test_created_at_label(self):
@@ -282,4 +300,51 @@ class ProjectTest(TestCase):
         """
         `Project` model `__str__` method should return `title`.
         """
-        self.assertEqual(self.project.__str__(), PROJECT_TITLE)
+        self.assertEqual(self.project.__str__(), TEST_PROJECT_TITLE)
+
+    def test_display_technologies_method_with_one_technology(self):
+        """
+        `Project` model `display_technologies` method should return `technology.name`.
+        """
+        self.assertEqual(
+            self.project.display_technologies(),
+            TEST_TECHNOLOGY_NAME_ONE,
+        )
+
+    def test_display_technologies_method_with_two_technologies(self):
+        """
+        `Project` model `display_technologies` method should return `technology.name, technology.name`.
+        """
+        technology_two = Technology.objects.create(
+            name=TEST_TECHNOLOGY_NAME_TWO,
+            description=TEST_TECHNOLOGY_DESCRIPTION_TWO,
+        )
+        self.project.technology.set([self.technology, technology_two])
+        self.assertEqual(
+            self.project.display_technologies(),
+            f"{TEST_TECHNOLOGY_NAME_ONE}, {TEST_TECHNOLOGY_NAME_TWO}",
+        )
+
+    def test_display_technologies_method_with_four_technologies(self):
+        """
+        `Project` model `display_technologies` method should return the first three technologies if there are more than three.
+        """
+        technology_two = Technology.objects.create(
+            name=TEST_TECHNOLOGY_NAME_TWO,
+            description=TEST_TECHNOLOGY_DESCRIPTION_TWO,
+        )
+        technology_three = Technology.objects.create(
+            name=TEST_TECHNOLOGY_NAME_THREE,
+            description=TEST_TECHNOLOGY_DESCRIPTION_THREE,
+        )
+        technology_four = Technology.objects.create(
+            name=TEST_TECHNOLOGY_NAME_FOUR,
+            description=TEST_TECHNOLOGY_DESCRIPTION_FOUR,
+        )
+        self.project.technology.set(
+            [self.technology, technology_two, technology_three, technology_four]
+        )
+        self.assertEqual(
+            self.project.display_technologies(),
+            f"{TEST_TECHNOLOGY_NAME_ONE}, {TEST_TECHNOLOGY_NAME_TWO}, {TEST_TECHNOLOGY_NAME_THREE}",
+        )

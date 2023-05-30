@@ -15,7 +15,6 @@ class TechnologyAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "description",
-        # "image",
         "created_at",
     )
 
@@ -31,7 +30,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "truncated_description",
-        "technology",
+        "display_technologies",
         "image",
         "created_at",
     )

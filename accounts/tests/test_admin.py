@@ -4,26 +4,26 @@ from accounts.models import CustomUser
 from accounts.admin import CustomUserAdmin
 
 
-TEST_USERNAME_ONE = 'ACustomUser'
+TEST_USERNAME_ONE = 'CustomUser01'
 TEST_PASSWORD_ONE = 'TEST_PASSWORD_ONE'
-TEST_FIRST_NAME_ONE = 'A'
+TEST_FIRST_NAME_ONE = 'One'
 
-TEST_USERNAME_TWO = 'AnotherCustomUser'
+TEST_USERNAME_TWO = 'CustomUser02'
 TEST_PASSWORD_TWO = 'TEST_PASSWORD_TWO'
-TEST_FIRST_NAME_TWO = 'Another'
+TEST_FIRST_NAME_TWO = 'Two'
 
 class TestCustomUserAdmin(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        """
-        Set up non-modified objects used by all test methods.
+    # @classmethod
+    # def setUpTestData(cls):
+    #     """
+    #     Set up non-modified objects used by all test methods.
 
-        This specific function name `setUpTestData` is required by Django.
-        """
-        cls.user = CustomUser.objects.create(
-            username=TEST_USERNAME_ONE,
-            first_name=TEST_FIRST_NAME_ONE,
-        )
+    #     This specific function name `setUpTestData` is required by Django.
+    #     """
+    #     cls.user = CustomUser.objects.create(
+    #         username=TEST_USERNAME_ONE,
+    #         first_name=TEST_FIRST_NAME_ONE,
+    #     )
 
     def test_get_fieldsets_is_list_of_tuples(self):
         """
