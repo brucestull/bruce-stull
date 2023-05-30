@@ -11,7 +11,8 @@ class TestTechnologyAdmin(TestCase):
 
     def test_get_fieldsets_is_list_of_tuples(self):
         """
-        `TechnologyAdmin` `get_fieldsets()` method should return a list of tuples.
+        `TechnologyAdmin` `get_fieldsets()` method should return a list
+        of tuples.
         """
         technology_admin = TechnologyAdmin(Technology, None)
         fieldsets = technology_admin.get_fieldsets(request=None, obj=None)
@@ -20,7 +21,8 @@ class TestTechnologyAdmin(TestCase):
 
     def test_get_fieldsets_has_name_in_first_element(self):
         """
-        `TechnologyAdmin` `get_fieldsets()` method should return a list of tuples that includes `name`.
+        `TechnologyAdmin` `get_fieldsets()` method should return a list
+        of tuples that includes `name`.
         """
         technology_admin = TechnologyAdmin(Technology, None)
         fieldsets = technology_admin.get_fieldsets(request=None, obj=None)
@@ -29,7 +31,8 @@ class TestTechnologyAdmin(TestCase):
 
     def test_get_fieldsets_has_description_in_second_element(self):
         """
-        `TechnologyAdmin` `get_fieldsets()` method should return a list of tuples that includes `description`.
+        `TechnologyAdmin` `get_fieldsets()` method should return a list
+        of tuples that includes `description`.
         """
         technology_admin = TechnologyAdmin(Technology, None)
         fieldsets = technology_admin.get_fieldsets(request=None, obj=None)
@@ -38,7 +41,8 @@ class TestTechnologyAdmin(TestCase):
 
     def test_get_fieldsets_has_created_at_in_third_element(self):
         """
-        `TechnologyAdmin` `get_fieldsets()` method should return a list of tuples that includes `created_at`.
+        `TechnologyAdmin` `get_fieldsets()` method should return a list
+        of tuples that includes `created_at`.
         """
         technology_admin = TechnologyAdmin(Technology, None)
         fieldsets = technology_admin.get_fieldsets(request=None, obj=None)
@@ -53,7 +57,8 @@ class TestProjectAdmin(TestCase):
 
     def test_project_admin_truncated_description_method_returns_description(self):
         """
-        `ProjectAdmin` `truncated_description()` method should return the `description`.
+        `ProjectAdmin` `truncated_description()` method should return the
+        `description` when it is less than or equal to 30 characters.
         """
         project_admin = ProjectAdmin(Project, None)
         project = Project.objects.create(
@@ -66,17 +71,23 @@ class TestProjectAdmin(TestCase):
             project.description,
         )
 
-def test_project_admin_truncated_description_method_returns_truncated_description(self):
+    def test_project_admin_truncated_description_method_returns_truncated_description(
+        self,
+    ):
         """
-        `ProjectAdmin` `truncated_description()` method should return the truncated `description`.
+        `ProjectAdmin` `truncated_description()` method should return
+        the truncated `description` when it is greater than 30 characters.
         """
+        test_description_more_than_30_characters = (
+            "This is a description with more than 30 characters."
+        )
         project_admin = ProjectAdmin(Project, None)
         project = Project.objects.create(
             title="Test Project",
-            description="This is a description with more than 30 characters.",
+            description=test_description_more_than_30_characters,
             image="test.jpg",
         )
-        truncated_description = "This is a description with more than 30 characters."[:30]
+        truncated_description = test_description_more_than_30_characters[:30]
         self.assertEqual(
             project_admin.truncated_description(project),
             truncated_description,
