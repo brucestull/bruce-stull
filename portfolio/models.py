@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class TimestampMixin(models.Model):
@@ -68,7 +69,7 @@ class Project(TimestampMixin, models.Model):
         help_text="Add an image of the project.",
         # `upload_to` is a required argument for `ImageField`.
         # It specifies the path to which the uploaded file will be saved.
-        # upload_to="images/",
+        # upload_to="media/",
         blank=True,
         null=True,
     )
@@ -78,6 +79,12 @@ class Project(TimestampMixin, models.Model):
         String representation of Project.
         """
         return self.title
+
+    def get_absolute_url(self):
+        return reverse(
+            "portfolio:project-detail",
+            kwargs={"pk": self.pk},
+        )
 
     def display_technologies(self):
         """

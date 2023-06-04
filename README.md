@@ -16,6 +16,14 @@
 
 ## Production Links
 
+## Development Links
+
+* <http://localhost:8000/>
+* <http://localhost:8000/admin/>
+* <http://localhost:8000/portfolio/projects/create/>
+* <http://localhost:8000/portfolio/projects/>
+* <http://localhost:8000/portfolio/projects/1/>
+
 ## Django Applications
 
 * `blog`

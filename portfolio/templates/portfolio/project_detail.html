@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ the_site_name }}
+    -
+    {{ project.title }}
+{% endblock title %}
+
+{% block content %}
+    {{ project.title }} - <a href={% url 'portfolio:project-update' project.id %}>Edit</a>
+{% endblock content %}

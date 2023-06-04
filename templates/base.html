@@ -53,10 +53,15 @@
                                    href="{% url 'home' %}">Home</a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="{% url 'portfolio:projects' %}">Projects</a>
+                            </li>
+
                             {% if user.registration_accepted %}
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="#">Item</a>
+                                   href="#">user.registration_accepted links</a>
                             </li>
                             {% endif %}
 
@@ -147,7 +152,7 @@
                                         <a class="dropdown-item"
                                            href="https://github.com/brucestull/bruce-stull"
                                            target="_blank">
-                                            BS Blog - Repository
+                                            FlynntKnapp Blog - Repository
                                         </a>
                                     </li>
                                 </ul>

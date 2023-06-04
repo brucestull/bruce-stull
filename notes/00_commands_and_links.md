@@ -10,6 +10,7 @@
 1. `python manage.py migrate`
 1. `python manage.py createsuperuser --email admin@email.app --username admin`
 1. `python manage.py createsuperuser --email FlynntKnapp@email.app --username FlynntKnapp`
+1. `python manage.py runserver`
 
 ### `pipenv`
 

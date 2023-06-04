@@ -51,10 +51,10 @@ urlpatterns = [
     #     "blog/",
     #     include("blog.urls"),
     # ),
-    # path(
-    #     "portfolio/",
-    #     include("portfolio.urls"),
-    # ),
+    path(
+        "portfolio/",
+        include("portfolio.urls"),
+    ),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
