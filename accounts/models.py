@@ -13,6 +13,13 @@ class CustomUser(AbstractUser):
         help_text="Designates whether user's registration has been accepted by an admin.",
     )
 
+    # def delete(self, *args, **kwargs):
+    #     """
+    #     Set the author of comments to `Deleted User` when deleting a `CustomUser`.
+    #     """
+    #     self.comment_set.update(author="Deleted User")
+    #     super().delete(*args, **kwargs)
+
     def __str__(self):
         """
         String representation of `CustomUser`.
